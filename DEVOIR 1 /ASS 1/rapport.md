@@ -1,2 +1,45 @@
+Thème : Prédiction du décrochage et du succès académique des étudiants
+Sous-thème : Analyse de données éducatives pour prévenir l’échec scolaire
+1. Contexte
 
-The dataset was developed as part of a project aiming to reduce academic dropout and failure in higher education by using machine learning to identify students at risk early in their studies. It contains information available at the time of enrollment, including academic background, demographic details, and socio-economic factors. The main goal is to classify students into three categories—dropout, enrolled, or graduate—by the end of the normal course duration. The project was funded by the SATDAP program (Capacitação da Administração Pública) under grant POCI-05-5762-FSE-000191 in Portugal. Each record in the dataset represents one student, and the data were split into 80% for training and 20% for testing. Prior to analysis, extensive preprocessing was carried out to remove anomalies, outliers, and missing values, ensuring a complete and reliable dataset.
+Cette base de données, développée au Portugal, vise à identifier précocement les étudiants à risque de décrochage dans l’enseignement supérieur. Elle a été conçue pour aider les établissements à mettre en place des stratégies de soutien grâce à des techniques de machine learning.
+
+2. Description de la base
+
+Nom : Predict Students’ Dropout and Academic Success
+
+Source : UCI Machine Learning Repository
+
+Taille : 4 424 étudiants
+
+Variables : 36 attributs
+
+Type de problème : Classification à 3 catégories (Dropout, Enrolled, Graduate)
+
+Valeurs manquantes : Aucune
+
+Les variables incluent des données démographiques, socio-économiques et académiques connues à l’inscription : âge, niveau des parents, mode d’admission, notes précédentes, etc.
+
+3. Objectif
+
+Prédire la probabilité d’abandon, de poursuite ou de réussite d’un étudiant dès son inscription, afin de réduire le taux d’échec universitaire.
+
+4. Atouts
+
+Données réelles et complètes
+
+Pas de valeurs manquantes
+
+Pertinente pour la recherche en éducation et en gestion
+
+5. Limites
+
+Déséquilibre entre les classes
+
+Contexte spécifique au Portugal (généralisation limitée)
+
+Manque de variables psychologiques ou comportementales
+
+6. Conclusion
+
+Cette base constitue un outil précieux pour l’analyse prédictive en éducation. Elle permet de comprendre les facteurs influençant la réussite et de proposer des actions préventives ciblées pour améliorer la performance étudiante.
