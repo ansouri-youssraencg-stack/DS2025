@@ -1,0 +1,16 @@
+La base de données Wine Quality rassemble des informations physico-chimiques sur des vins rouges et blancs de la région du Vinho Verde, au Portugal. Chaque échantillon est décrit par 11 variables mesurées en laboratoire (acidité, sucre résiduel, sulfates, alcool, etc.) ainsi qu’une note de qualité attribuée par des experts. Cette base, propre et entièrement numérique, est particulièrement adaptée à des analyses statistiques telles que l’ACP, la modélisation prédictive ou l’étude des facteurs influençant la qualité du vin. Elle permet également de comparer de manière rigoureuse les caractéristiques des vins rouges et blancs.
+
+Input variables (based on physicochemical tests):
+   1 - fixed acidity
+   2 - volatile acidity
+   3 - citric acid
+   4 - residual sugar
+   5 - chlorides
+   6 - free sulfur dioxide
+   7 - total sulfur dioxide
+   8 - density
+   9 - pH
+   10 - sulphates
+   11 - alcohol
+Output variable (based on sensory data): 
+   12 - quality (score between 0 and 10)
