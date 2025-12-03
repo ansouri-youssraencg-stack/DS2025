@@ -1,0 +1,32 @@
+
+\documentclass[12pt]{article}
+\usepackage{amsmath,graphicx,geometry}
+\geometry{margin=1in}
+
+\title{Rapport Scientifique -- Estimation du Temps de Livraison}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+Les plateformes de livraison doivent estimer le temps de livraison afin d'optimiser la satisfaction client et la logistique. La problématique traitée est la prédiction supervisée du temps de livraison (régression).
+
+\section{Méthodologie}
+\subsection{Pré-traitement}
+Nettoyage des doublons, conversion des dates, suppression des valeurs aberrantes. Imputation par médiane pour les variables numériques et par mode pour les catégorielles. Encodage One-Hot et standardisation des variables numériques.
+
+\subsection{EDA}
+Analyse des distributions, heatmap des corrélations, identification des variables influentes (charge du système, disponibilité des livreurs, type de restaurant).
+
+\subsection{Modélisation}
+Trois modèles testés : Régression Linéaire, Random Forest, XGBoost. Validation par cross-validation et optimisation par RandomizedSearchCV.
+
+\section{Résultats}
+XGBoost est le meilleur modèle. Les métriques utilisées : MAE, RMSE et $R^2$. Les erreurs proviennent principalement des heures de pointe et de la variabilité logistique.
+
+\section{Conclusion}
+Modèle performant mais limites dues à l'absence de données géographiques et temporelles fines. Améliorations : ajout de features temporelles, géolocalisation, modèles CatBoost et LightGBM.
+
+\end{document}
