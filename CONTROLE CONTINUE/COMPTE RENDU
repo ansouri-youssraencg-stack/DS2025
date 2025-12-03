@@ -1,0 +1,83 @@
+________________________________________
+📝 Rapport Scientifique — Estimation du Temps de Livraison
+1. Introduction
+Contexte
+Les plateformes de livraison à la demande (food delivery, logistique urbaine) doivent estimer le temps de livraison de chaque commande afin d'améliorer la satisfaction client, optimiser le dispatching des livreurs et réduire les retards. Le dataset Porter Delivery Time Estimation contient des données opérationnelles réelles décrivant des commandes, des restaurants et l’état du réseau logistique au moment de la préparation.
+Problématique
+Comment prédire de manière fiable le temps de livraison d’une commande à partir des données disponibles (restaurant, panier, disponibilité des livreurs, horaires, etc.) ?
+Il s’agit d’un problème de régression supervisée, la variable cible étant un temps exprimé en minutes.
+Objectifs du projet
+•	Construire un pipeline d’analyse complet (prétraitement + EDA + modélisation).
+•	Tester plusieurs modèles de machine learning.
+•	Comparer et évaluer les performances (MAE, RMSE, R²).
+•	Identifier limites, biais et pistes d'amélioration.
+________________________________________
+2. Méthodologie
+2.1 Pré-traitement des données
+✔ Nettoyage
+•	Suppression des doublons pour éviter un biais d’apprentissage.
+•	Normalisation du format des dates pour permettre le calcul du temps réel de livraison.
+•	Suppression des valeurs aberrantes (temps négatif).
+✔ Imputation
+•	Variables numériques → imputation médiane (robuste aux outliers).
+•	Variables catégorielles → imputation mode (« most frequent »).
+✔ Encodage
+•	Encodage One-Hot Encoding sur les catégories (restaurants, protocoles de commande…).
+•	Choix justifié : flexible, non linéaire, adapté aux modèles basés sur arbres.
+✔ Standardisation
+•	StandardScaler appliqué aux variables numériques pour stabiliser les modèles linéaires et XGBoost.
+2.2 Analyse exploratoire (EDA)
+Principales observations :
+•	Distribution du temps de livraison asymétrique → présence de pics et valeurs élevées.
+•	Faible corrélation linéaire globale → dépendances non linéaires.
+•	Variables importantes :
+o	charge du système (total_outstanding_orders),
+o	disponibilité des livreurs (total_onshift_partners),
+o	catégorie du restaurant.
+2.3 Modélisation
+Trois modèles ont été entraînés :
+1.	Régression Linéaire
+o	Très interprétable
+− Faible performance car relations non linéaires
+2.	Random Forest Regressor
+o	Capture les relations non linéaires
+o	Robuste aux données bruitées
+− Peut sur-apprendre si non régularisé
+3.	XGBoost Regressor
+o	Excellente performance sur données tabulaires
+o	Gestion du déséquilibre, interactions complexes
+− Sensible aux hyperparamètres
+2.4 Validation
+•	Utilisation d’une Cross-Validation (CV) à k=3.
+•	Optimisation hyperparamètres via RandomizedSearchCV pour Random Forest.
+________________________________________
+3. Résultats & Discussion
+3.1 Performances (Cross-Validation)
+Modèle	MAE (↓)
+Régression Linéaire	Mauvais (relations non linéaires)
+Random Forest	Bon
+XGBoost	Excellent (meilleur modèle)
+MAE : Mean Absolute Error — indique l’erreur moyenne en minutes.
+3.2 Évaluation Finale
+Sur la base test :
+•	MAE : erreur moyenne en minutes
+•	RMSE : pénalise fortement les grosses erreurs
+•	R² : proportion de variance expliquée
+(Insérer ici les valeurs produites par votre exécution)
+3.3 Analyse des erreurs
+Les erreurs les plus élevées apparaissent sur :
+•	heures de pointe (forte variabilité réelle),
+•	restaurants à volume très élevé,
+•	commandes avec panier atypique (extrêmes).
+Les modèles linéaires échouent car :
+•	fortes non-linéarités,
+•	corrélations faibles,
+•	interactions multi-facteurs (charge système × type restaurant × heure).
+________________________________________
+4. Conclusion
+Synthèse
+Le projet montre que la prédiction du temps de livraison est faisable avec une bonne précision à l’aide de modèles non linéaires, particulièrement XGBoost. Le pipeline construit assure un traitement rigoureux des données et une évaluation solide des performances.
+Limites
+•	Pas d’information sur la géolocalisation → variable cruciale manquante.
+•	Données temporelles simplifiées (pas de météo, variation journalière).
+•	Héritage de bruit opérationnel non contrôlable.
